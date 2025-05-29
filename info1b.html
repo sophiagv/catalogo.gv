@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prenda Detallada</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 100vh; /* Altura de la pantalla completa */
+            background-color: #f5f5f5;
+        }
+
+        /* Estilo del carrusel */
+        .carousel-container {
+            position: relative;
+            width: 35%; /* Toma la mitad izquierda de la pantalla */
+            height: 100%;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: white;
+        }
+
+        .carousel-images {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.5s ease; /* Suaviza el cambio entre imágenes */
+        }
+
+        .carousel-images img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ajusta la imagen al tamaño del carrusel */
+        }
+
+        .carousel-buttons {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+        }
+
+        .carousel-buttons button {
+            background-color: rgba(0, 0, 0, 0.5);
+            border: none;
+            color: white;
+            font-size: 18px;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 50%;
+            transition: background-color 0.3s ease;
+        }
+
+        .carousel-buttons button:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        /* Estilo de la información */
+        .info-container {
+            width: 65%; /* Toma la mitad derecha de la pantalla */
+            height: 100%;
+            padding: 20px;
+            text-align: left;
+            background-color: white;
+            box-shadow: -2px 0px 10px rgba(0, 0, 0, 0.1);
+            overflow-y: auto;
+        }
+
+        .info-container h1 {
+            font-size: 28px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .info-container p {
+            font-size: 16px;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .info-container button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: white;
+            background-color: lightcoral;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .info-container button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <!-- Carrusel de imágenes -->
+    <div class="carousel-container">
+        <div class="carousel-images" id="carousel">
+            <img src="img/ropa1_info1.png" >
+            <img src="img/ropa1_info2.png" >
+            <img src="img/ropa1_info3.png" >
+        </div>
+        <div class="carousel-buttons">
+            <button id="prev">&lt;</button>
+            <button id="next">&gt;</button>
+        </div>
+    </div>
+
+    <!-- Información de la prenda -->
+    <div class="info-container">
+        <h1>Prenda: Sudadera de mujer </h1>
+        <p>
+            Sudadera de mujer con ziper y cuello alto. Colores: negro, gris, blanco. Está confeccionada con materiales de alta calidad y ofrece un diseño único que combina moda y comodidad. Perfecta para cualquier ocasión, es un imprescindible en tu guardarropa.
+        </p>
+        <p><strong>Precio:</strong> $159.90</p>
+        <p><strong>Tallas disponibles:</strong> S, M, L, XL</p>
+        <button style="color:white;">Comprar ahora</button>
+    </div>
+
+    <script>
+        // Funcionalidad del carrusel
+        const carousel = document.getElementById("carousel");
+        const images = carousel.querySelectorAll("img");
+        const prevButton = document.getElementById("prev");
+        const nextButton = document.getElementById("next");
+        let currentIndex = 0;
+
+        function showImage(index) {
+            const offset = -index * 100; // Desplaza el carrusel según el índice
+            carousel.style.transform = `translateX(${offset}%)`;
+        }
+
+        prevButton.addEventListener("click", () => {
+            currentIndex = (currentIndex === 0) ? images.length - 1 : currentIndex - 1;
+            showImage(currentIndex);
+        });
+
+        nextButton.addEventListener("click", () => {
+            currentIndex = (currentIndex === images.length - 1) ? 0 : currentIndex + 1;
+            showImage(currentIndex);
+        });
+    </script>
+</body>
+</html>
